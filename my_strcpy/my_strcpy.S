@@ -14,7 +14,8 @@ loop:
     cmpb $0, (%rsi)
     je quit
     // else copy and loop
-    movb (%rsi), %dil
+    movb (%rsi), %rbx
+    movq %rbx, (%rdi)
 
     addq $1, %rsi
     addq $1, %rdi
