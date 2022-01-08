@@ -16,7 +16,7 @@ loop:
     // else copy and loop
     movb (%rsi), %dil
 
-    addq $1, %rsx
+    addq $1, %rsi
     addq $1, %rdi
 
     jmp loop
