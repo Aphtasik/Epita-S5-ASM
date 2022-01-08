@@ -24,7 +24,7 @@ loop:
 
 quit:
     // set \0 at the end of str
-    movb $0, (%rax)
+    movb $0, (%rdi)
     // restore registers
     popq %rbp
     // return because rax is already set
