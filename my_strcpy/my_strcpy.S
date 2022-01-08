@@ -1,4 +1,6 @@
 .global my_strcpy
+.global main
+
 .text
 
 my_strcpy:
@@ -12,9 +14,9 @@ loop:
     cmpb $0, (%rsi)
     je quit
     // else copy and loop
-    movb (%rbx), %dil
+    movb (%rsi), %dil
 
-    addq $1, %rbx
+    addq $1, %rsx
     addq $1, %rdi
 
     jmp loop
