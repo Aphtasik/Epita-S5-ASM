@@ -13,6 +13,7 @@ reverse_print:
     // get length of message
     call strlen
     movl %eax, %ebp
+    dec %ebp
 
     addq %rbp, %rbx
 
@@ -25,7 +26,6 @@ printchar:
     // clearing registers
     cmpl $-1, %ebp
     jne printchar
-    jmp quit
 
 quit:
     popq %rbp
@@ -39,4 +39,4 @@ main:
     ret
 
 message:
-    .asciz "abcdefghijklmnop"
+    .asciz "I love pagnou_P"
