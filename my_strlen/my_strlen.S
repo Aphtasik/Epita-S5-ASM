@@ -5,16 +5,15 @@
 
 my_strlen:
     pushq %rbp
-    xor %rax, %rax
 
+    xor %rbx, %rbx
+    xor %rax, %rax
     movq %rdi, %rbx
 
 loop:
-    // \0 = quit
     cmpb $0, (%rbx)
     je quit
 
-    // Incr len and move pointer
     addq $1, %rbx
     addq $1, %rax
 
@@ -25,6 +24,7 @@ quit:
     ret
 
 main:
+    xor %rdi, %rdi
     movq $message, %rdi
 
     call my_strlen
