@@ -8,6 +8,7 @@ reverse_print:
     pushq %rbp
 
     // copy message on rbx
+    xor %rbx, %rbx
     movq %rdi, %rbx
 
     // get length of message
@@ -32,6 +33,7 @@ quit:
     ret
 
 main:
+    xor %rdi, %rdi
     movq $message, %rdi
 
     call reverse_print
