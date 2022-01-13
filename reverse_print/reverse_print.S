@@ -22,14 +22,16 @@ printchar:
     movb (%rbx), %dil
     call putchar
 
-    dec %rbp // decrement length 
     subq $1, %rbx
+    dec %rbp // decrement length 
+
     // clearing registers
     cmpl $-1, %ebp
     jne printchar
 
 quit:
     popq %rbp
+    movq $0, %rax
     ret
 
 main:

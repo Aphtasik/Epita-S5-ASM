@@ -18,16 +18,18 @@ loop:
     movq (%rsi), %r15
     movq %r15, (%rdi)
 
-    addq $1, %rsi
     addq $1, %rdi
+    addq $1, %rsi
 
     jmp loop
 
 quit:
     // set \0 at the end of str
     movb $0, (%rdi)
+
     // restore registers
     popq %rbp
+
     // return because rax is already set
     nop
     ret
