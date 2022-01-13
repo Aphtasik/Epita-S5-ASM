@@ -1,47 +1,61 @@
 .global my_pow
+.global main
 .text
 
 my_pow:
+        cmp $0, %rdi
+        je quit_print
+
         // init
         pushq   %rbp
-        movq    %rsp, %rbp
-        subq    $32, %rsp
-        movl    %edi, -20(%rbp)
+        pushq   %rbx
+        pushq   %r12
 
-        // init res 
-        movl    $1, -4(%rbp)
+        movl $1, %r12d
+        movq %rdi, %rbx
 
+loop: 
         // print
-        movl    -4(%rbp), %eax
-        movl    %eax, %esi
+        movl    %r12d, %esi
         movl    $format, %edi
         movl    $0, %eax
         call    printf
 
-        jmp     quit
-loop:
-        // mul
-        sall    -4(%rbp)
+        dec %ebx
+        imul $2, %r12
+    
+        cmpl $0, %ebx
+        jl quit
 
-        // print
-        movl    -4(%rbp), %eax
-        movl    %eax, %esi
-        movl    $format, %edi
-        movl    $0, %eax
-        call    printf
+        jmp loop
 
-        // decr
-        subl    $1, -20(%rbp)
 quit:
-        // check if loop
-        cmpl    $0, -20(%rbp)
-        jg      loop
-        
-        //end
-        nop
-        nop
-        leave
+        // init
+        popq   %rbp
+        popq   %r12
+        popq   %rbx
+
+        movq $0, %rax
+
         ret
+
+quit_print:
+        // print
+        movl    $1, %esi
+        movl    $format, %edi
+        movl    $0, %eax
+        call    printf
+        
+    
+        movq $0, %rax
+
+        ret
+
+main:
+    movq $5, %rdi
+    call my_pow
+    nop
+    ret
 
 format:
         .asciz "%d\n"
