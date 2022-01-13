@@ -13,6 +13,7 @@ my_pow:
 
         movl $1, %r12d
         movq %rdi, %rbx
+        addq $1, %rbx
 
 loop: 
         // print
@@ -25,7 +26,7 @@ loop:
         imul $2, %r12
     
         cmpl $0, %ebx
-        jl quit
+        je quit
 
         jmp loop
 
