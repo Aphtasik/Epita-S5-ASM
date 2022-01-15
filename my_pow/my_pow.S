@@ -9,21 +9,20 @@ my_pow:
         // init
         pushq   %rbp
         pushq   %rbx
-        pushq   %r12
 
-        movl $1, %r12d
+        movl $1, %ebp
         movq %rdi, %rbx
         addq $1, %rbx
 
 loop: 
         // print
-        movl    %r12d, %esi
+        movl    %ebp, %esi
         movl    $format, %edi
         movl    $0, %eax
         call    printf
 
         dec %ebx
-        imul $2, %r12
+        imul $2, %ebp
     
         cmpl $0, %ebx
         je quit
@@ -33,7 +32,6 @@ loop:
 quit:
         // init
         popq   %rbp
-        popq   %r12
         popq   %rbx
 
         movq $0, %rax
